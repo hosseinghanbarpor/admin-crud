@@ -1,0 +1,61 @@
+{
+    "name": "okami101/laravel-admin",
+    "description": "Admin panel generator for Laravel 8 and based on Vuetify Admin, a separate SPA admin framework running on top of REST APIs.",
+    "keywords": [
+        "laravel",
+        "crud"
+    ],
+    "homepage": "https://www.okami101.io/vuetify-admin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrien Beaudouin",
+            "email": "adrien.beaudouin@outlook.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3",
+        "illuminate/routing": "^6.0|^7.0|^8.0",
+        "illuminate/support": "^6.0|^7.0|^8.0",
+        "illuminate/validation": "^6.0|^7.0|^8.0",
+        "symfony/yaml": "^5.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "fzaninotto/faker": "^1.9",
+        "spatie/laravel-query-builder": "^3.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "suggest": {
+        "barryvdh/laravel-ide-helper": "For advanced IDE integration",
+        "friendsofphp/php-cs-fixer": "For coding style",
+        "spatie/laravel-query-builder": "For easy resources pagination and filtering through an API",
+    },
+    "autoload": {
+        "psr-4": {
+            "Okami101\\LaravelAdmin\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Okami101\\LaravelAdmin\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage",
+        "format": "php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Okami101\\LaravelAdmin\\AdminServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
