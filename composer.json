@@ -29,7 +29,7 @@
     "suggest": {
         "barryvdh/laravel-ide-helper": "For advanced IDE integration",
         "friendsofphp/php-cs-fixer": "For coding style",
-        "spatie/laravel-query-builder": "For easy resources pagination and filtering through an API",
+        "spatie/laravel-query-builder": "For easy resources pagination and filtering through an API"
     },
     "autoload": {
         "psr-4": {
