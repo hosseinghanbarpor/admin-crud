@@ -1,6 +1,6 @@
 <?php
 
-namespace Okami101\LaravelAdmin\Commands;
+namespace Samavin\LaravelAdmin\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Okami101\LaravelAdmin\Traits;
+namespace Samavin\LaravelAdmin\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;

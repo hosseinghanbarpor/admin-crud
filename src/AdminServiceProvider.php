@@ -1,12 +1,12 @@
 <?php
 
-namespace Okami101\LaravelAdmin;
+namespace Samavin\LaravelAdmin;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Okami101\LaravelAdmin\Commands\CrudMakeCommand;
-use Okami101\LaravelAdmin\Commands\InstallCommand;
+use Samavin\LaravelAdmin\Commands\CrudMakeCommand;
+use Samavin\LaravelAdmin\Commands\InstallCommand;
 
 class AdminServiceProvider extends ServiceProvider
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Okami101\LaravelAdmin\Commands;
+namespace Samavin\LaravelAdmin\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
-use Okami101\LaravelAdmin\AdminServiceProvider;
+use Samavin\LaravelAdmin\AdminServiceProvider;
 use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
