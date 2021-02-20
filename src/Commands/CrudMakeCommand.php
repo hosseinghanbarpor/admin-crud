@@ -375,37 +375,6 @@ class CrudMakeCommand extends GeneratorCommand
      */
     protected function createRoutes()
     {
-        $model = class_basename($this->argument('name'));
-        $slug = Str::snake(Str::pluralStudly($model));
-        $code = "'$slug' => 'App\Http\Controllers\{$model}Controller'";
-
-        $routeFile = base_path('routes/api.php');
-        if (Str::contains($this->files->get($routeFile), $code)) {
-            return;
-        }
-
-        $content = file($routeFile, FILE_IGNORE_NEW_LINES);
-
-        $lines = count($content);
-        $startLine = array_search('Route::apiResources', $content, true);
-
-        for ($i = $startLine + 1; $i < $lines; $i++) {
-            if (Str::contains($content[$i], ']);')) {
-                $endLine = $i;
-
-                break;
-            }
-        }
-
-        array_splice(
-            $content,
-            $endLine,
-            0,
-            <<<EOF
-        $code,
-EOF
-        );
-        $this->files->put($routeFile, implode(PHP_EOL, $content) . PHP_EOL);
     }
 
     /**
