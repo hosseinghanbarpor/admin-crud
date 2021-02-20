@@ -90,7 +90,7 @@ class CrudMakeCommand extends GeneratorCommand
             $this->createSeeder();
         }
 
-        $this->createRoutes();
+        //$this->createRoutes();
     }
 
     /**

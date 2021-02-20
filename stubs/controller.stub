@@ -27,7 +27,7 @@ class {{ class }} extends Controller
         $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ model }}"], ['name' => "{{ model }} list"]];
 
         ${{ modelVariable }}s = {{ model }}::all();
-        return view('{{ model }}.index', ['{{ modelVariable }}s' => '{{ modelVariable }}s' , '{{ breadcrumbs }}' => '{{ breadcrumbs }}']);
+        return view('{{ model }}.index', ['{{ modelVariable }}s' => '{{ modelVariable }}s' , 'breadcrumbs' => 'breadcrumbs']);
     }
 
     /**
@@ -39,7 +39,7 @@ class {{ class }} extends Controller
     {
        $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ model }}"], ['name' => "create {{ model }}"]];
 
-        return view('{{ model }}.create' , ['{{ breadcrumbs }}' => '{{ breadcrumbs }}'] );
+        return view('{{ model }}.create' , ['breadcrumbs' => 'breadcrumbs'] );
     }
 
     /**
@@ -65,7 +65,7 @@ class {{ class }} extends Controller
     {
         $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ model }}"], ['name' => "show {{ model }}"]];
 
-        return view('{{ model }}.show', ['{{ modelVariable }}' => '{{ modelVariable }}', '{{ breadcrumbs }}' => '{{ breadcrumbs }}']);
+        return view('{{ model }}.show', ['{{ modelVariable }}' => '{{ modelVariable }}', 'breadcrumbs' => 'breadcrumbs']);
     }
 
     /**
@@ -78,7 +78,7 @@ class {{ class }} extends Controller
     {
         $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ model }}"], ['name' => "edit {{ model }}"]];
 
-        return view('{{ model }}.edit', ['{{ modelVariable }}' => '{{ modelVariable }}' , '{{ breadcrumbs }}' => '{{ breadcrumbs }}']);
+        return view('{{ model }}.edit', ['{{ modelVariable }}' => '{{ modelVariable }}' , 'breadcrumbs' => 'breadcrumbs']);
     }
 
 

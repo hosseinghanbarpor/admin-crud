@@ -3,8 +3,9 @@
 namespace {{ namespace }};
 
 use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Models\User;
 use {{ namespacedModel }};
-use {{ namespacedUserModel }};
+
 
 class {{ class }}
 {
@@ -13,10 +14,10 @@ class {{ class }}
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \{{ namespacedUserModel }}  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny({{ user }} $user)
+    public function viewAny(User $user)
     {
         return true;
     }
@@ -24,11 +25,11 @@ class {{ class }}
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \{{ namespacedUserModel }}  $user
+     * @param  \App\Models\User  $user
      * @param  \{{ namespacedModel }}  ${{ modelVariable }}
      * @return mixed
      */
-    public function view({{ user }} $user, {{ model }} ${{ modelVariable }})
+    public function view(User $user, {{ model }} ${{ modelVariable }})
     {
         return true;
     }
@@ -36,10 +37,10 @@ class {{ class }}
     /**
      * Determine whether the user can create models.
      *
-     * @param  \{{ namespacedUserModel }}  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create({{ user }} $user)
+    public function create(User $user)
     {
         return true;
     }
@@ -47,11 +48,11 @@ class {{ class }}
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \{{ namespacedUserModel }}  $user
+     * @param  \App\Models\User  $user
      * @param  \{{ namespacedModel }}  ${{ modelVariable }}
      * @return mixed
      */
-    public function update({{ user }} $user, {{ model }} ${{ modelVariable }})
+    public function update(User $user, {{ model }} ${{ modelVariable }})
     {
         return true;
     }
@@ -59,11 +60,11 @@ class {{ class }}
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \{{ namespacedUserModel }}  $user
+     * @param  \App\Models\User  $user
      * @param  \{{ namespacedModel }}  ${{ modelVariable }}
      * @return mixed
      */
-    public function delete({{ user }} $user, {{ model }} ${{ modelVariable }})
+    public function delete(User $user, {{ model }} ${{ modelVariable }})
     {
         return true;
     }
