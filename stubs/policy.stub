@@ -4,7 +4,7 @@ namespace {{ namespace }};
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use {{ namespacedModel }};
-use {{ namespacedUserModel }};
+use App\Models\User;
 
 class {{ class }}
 {
@@ -16,7 +16,7 @@ class {{ class }}
      * @param  \{{ namespacedUserModel }}  $user
      * @return mixed
      */
-    public function viewAny({{ user }} $user)
+    public function viewAny(User $user)
     {
         return true;
     }
@@ -28,7 +28,7 @@ class {{ class }}
      * @param  \{{ namespacedModel }}  ${{ modelVariable }}
      * @return mixed
      */
-    public function view({{ user }} $user, {{ model }} ${{ modelVariable }})
+    public function view(User $user, {{ model }} ${{ modelVariable }})
     {
         return true;
     }
@@ -39,7 +39,7 @@ class {{ class }}
      * @param  \{{ namespacedUserModel }}  $user
      * @return mixed
      */
-    public function create({{ user }} $user)
+    public function create(User $user)
     {
         return true;
     }
@@ -51,7 +51,7 @@ class {{ class }}
      * @param  \{{ namespacedModel }}  ${{ modelVariable }}
      * @return mixed
      */
-    public function update({{ user }} $user, {{ model }} ${{ modelVariable }})
+    public function update(User $user, {{ model }} ${{ modelVariable }})
     {
         return true;
     }
@@ -63,7 +63,7 @@ class {{ class }}
      * @param  \{{ namespacedModel }}  ${{ modelVariable }}
      * @return mixed
      */
-    public function delete({{ user }} $user, {{ model }} ${{ modelVariable }})
+    public function delete(User $user, {{ model }} ${{ modelVariable }})
     {
         return true;
     }
