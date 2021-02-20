@@ -1,16 +1,15 @@
 {
     "name": "samavin/laravel-admin",
-    "description": "this package forked from https://www.okami101.io/vuetify-admin ",
+    "description": "Crud Generator",
     "keywords": [
-        "laravel",
         "crud"
     ],
-    "homepage": "https://www.okami101.io/vuetify-admin",
+    "homepage": "https://www.samavin.com/",
     "license": "MIT",
     "authors": [
         {
-            "name": "Adrien Beaudouin",
-            "email": "adrien.beaudouin@outlook.com"
+            "name": "Hossein Ghanbarpor",
+            "email": "hossein.ghppor@outlook.com"
         }
     ],
     "require": {
@@ -21,14 +20,11 @@
         "symfony/yaml": "^5.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16",
         "fzaninotto/faker": "^1.9",
         "spatie/laravel-query-builder": "^3.0",
         "phpunit/phpunit": "^9.0"
     },
     "suggest": {
-        "barryvdh/laravel-ide-helper": "For advanced IDE integration",
-        "friendsofphp/php-cs-fixer": "For coding style",
         "spatie/laravel-query-builder": "For easy resources pagination and filtering through an API"
     },
     "autoload": {

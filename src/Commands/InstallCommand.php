@@ -53,13 +53,6 @@ class InstallCommand extends Command
         $devDependencies = ['laracasts/generators'];
 
 
-        if ($installLaravelIdeHelper = $this->confirm('Install barryvdh/laravel-ide-helper to provide full autocompletion ?', true)) {
-            $devDependencies[] = 'barryvdh/laravel-ide-helper';
-        }
-        if ($installPhpCsFixer = $this->confirm('Install friendsofphp/php-cs-fixer to provide code styling ?', true)) {
-            $devDependencies[] = 'friendsofphp/php-cs-fixer';
-        }
-
         $this->installDependencies($dependencies);
         $this->installDependencies($devDependencies, true);
 
@@ -71,13 +64,6 @@ class InstallCommand extends Command
          * Specific per-package preconfiguration
          */
 
-        if ($installLaravelIdeHelper) {
-            $this->configureLaravelIdeHelper();
-        }
-
-        if ($installPhpCsFixer) {
-            $this->configurePhpCsFixer();
-        }
 
         /**
          * Auto included package publish
@@ -89,43 +75,6 @@ class InstallCommand extends Command
         ]);
     }
 
-    private function configureLaravelIdeHelper()
-    {
-        $this->line('Configure Laravel IDE Helper');
-
-        $this->warn(
-            'Add this code inside composer.json for automatic generation :' . <<<EOF
-"scripts":{
-    "post-update-cmd": [
-        "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-        "@php artisan ide-helper:generate",
-        "@php artisan ide-helper:meta"
-    ]
-},
-EOF
-        );
-
-        /**
-         * Do not include generated code
-         */
-        $this->addToGitIgnore('.phpstorm.meta.php');
-        $this->addToGitIgnore('_ide_helper.php');
-    }
-
-    private function configurePhpCsFixer()
-    {
-        $this->line('Configure PHP CS Fixer');
-
-        $this->call('vendor:publish', [
-            '--provider' => AdminServiceProvider::class,
-            '--tag' => 'phpcs',
-        ]);
-
-        /**
-         * Do not include phpcs cache
-         */
-        $this->addToGitIgnore('.php_cs.cache');
-    }
 
     private function installDependencies(array $dependencies, bool $dev = false)
     {

@@ -17,10 +17,6 @@ class AdminServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
 
-            $this->publishes([
-                __DIR__.'/../files/.php_cs.dist' => base_path('.php_cs.dist'),
-            ], 'phpcs');
-
             $this->commands([
                 InstallCommand::class,
                 CrudMakeCommand::class,
