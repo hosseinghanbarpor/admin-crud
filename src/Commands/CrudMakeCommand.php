@@ -181,6 +181,7 @@ class CrudMakeCommand extends GeneratorCommand
             '{{ media }}',
             '{{ namespacedModel }}',
             '{{ model }}',
+            '{{ system }}',
             '{{ modelVariable }}',
         ], [
             $this->getArrayString($this->getFields()->keys()),
@@ -189,6 +190,7 @@ class CrudMakeCommand extends GeneratorCommand
             $this->getFilterableFields()->implode("\n                    "),
             $this->getArrayString($this->getSortableFields()),
             $this->getArrayString($this->getIncludeFields()),
+            $this->getArrayString($this->getSystemName()),
             $this->getMediaCodeLines($this->getMediaFields()),
             $namespaceModel,
             $model,
@@ -228,6 +230,11 @@ class CrudMakeCommand extends GeneratorCommand
     private function getSortableFields()
     {
         return $this->getFormattedInputArray('sortable');
+    }
+
+    private function getSystemName()
+    {
+        return $this->getFormattedInputArray('system');
     }
 
     private function getIncludeFields()
@@ -401,6 +408,7 @@ class CrudMakeCommand extends GeneratorCommand
             ['media', null, InputOption::VALUE_OPTIONAL, 'List of media fields (field:multiple)'],
             ['searchable', null, InputOption::VALUE_OPTIONAL, 'List of searchable fields'],
             ['sortable', null, InputOption::VALUE_OPTIONAL, 'List of sortable fields'],
+            ['system', null, InputOption::VALUE_OPTIONAL, 'System Name'],
             ['include', null, InputOption::VALUE_OPTIONAL, 'List of included related resources'],
             ['filterable', null, InputOption::VALUE_OPTIONAL, 'List of custom filterable fields (field:internal)'],
             ['migration', 'm', InputOption::VALUE_NONE, 'Create a new migration file for the model'],

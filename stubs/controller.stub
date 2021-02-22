@@ -3,12 +3,11 @@
 namespace {{ namespace }};
 
 use {{ namespacedModel }};
+use Illuminate\Http\Request;
 use App\Http\Requests\Store{{ model }};
 use App\Http\Requests\Update{{ model }};
 use App\Http\Resources\{{ model }} as {{ model }}Resource;
-use Spatie\QueryBuilder\AllowedFilter;
-use Spatie\QueryBuilder\QueryBuilder;
-use Samavin\LaravelAdmin\Filters\SearchFilter;
+use DataTables;
 
 class {{ class }} extends Controller
 {
@@ -24,10 +23,24 @@ class {{ class }} extends Controller
      */
     public function index()
     {
+
+       if ($request->ajax()) {
+            $data = {{ model }}::select('*');
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('actions', function($row){
+                    $editUrl = route('articleCategories.edit', $row->id);
+                    $deleteUrl = route('articleCategories.destroy', $row->id);
+
+                    return view('partial.dataTableActions', compact('editUrl', 'deleteUrl'));
+                })
+                ->make(true);
+        }
+
+
         $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ model }}"], ['name' => "{{ model }} List"]];
 
-        ${{ modelVariable }}s = {{ model }}::all();
-        return view('{{ model }}.index', ['{{ modelVariable }}s' => {{ modelVariable }}s , 'breadcrumbs' => $breadcrumbs ]);
+        return view('dashboard.{{ system }}.{{ model }}.index', ['breadcrumbs' => $breadcrumbs ]);
     }
 
     /**
@@ -39,7 +52,7 @@ class {{ class }} extends Controller
     {
        $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ model }}"], ['name' => "Create {{ model }}"]];
 
-        return view('{{ model }}.create' , ['breadcrumbs' => $breadcrumbs] );
+        return view('dashboard.{{ system }}.{{ model }}.create' , ['breadcrumbs' => $breadcrumbs] );
     }
 
     /**
@@ -65,7 +78,7 @@ class {{ class }} extends Controller
     {
         $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ model }}"], ['name' => "Show {{ model }}"]];
 
-        return view('{{ model }}.show', ['{{ modelVariable }}' => {{ modelVariable }}, 'breadcrumbs' => $breadcrumbs]);
+        return view('dashboard.{{ system }}.{{ model }}.show', ['{{ modelVariable }}' => ${{ modelVariable }}, 'breadcrumbs' => $breadcrumbs]);
     }
 
     /**
@@ -78,7 +91,7 @@ class {{ class }} extends Controller
     {
         $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ model }}"], ['name' => "Edit {{ model }}"]];
 
-        return view('{{ model }}.edit', ['{{ modelVariable }}' => {{ modelVariable }} , 'breadcrumbs' => $breadcrumbs]);
+        return view('dashboard.{{ system }}.{{ model }}.edit', ['{{ modelVariable }}' => ${{ modelVariable }} , 'breadcrumbs' => $breadcrumbs]);
     }
 
 
@@ -108,26 +121,6 @@ class {{ class }} extends Controller
         ${{ modelVariable }}->delete();
 
         return redirect()->route('{{ modelVariable }}s.index');
-    }
-
-    /**
-     * Search a listing of the resource.
-     *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     */
-    public function search()
-    {
-        return {{ model }}Resource::collection(
-            QueryBuilder::for({{ model }}::class)
-                ->allowedFilters([
-                    AllowedFilter::custom('q', new SearchFilter([{{ searchable }}])),
-                    AllowedFilter::exact('id'),
-                    {{ filters }}
-                ])
-                ->allowedSorts([{{ sortable }}])
-                ->allowedIncludes([{{ include }}])
-                ->exportOrPaginate()
-        );
     }
 
 }
