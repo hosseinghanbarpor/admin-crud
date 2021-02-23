@@ -28,8 +28,8 @@ class {{ class }} extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('actions', function($row){
-                    $editUrl = route('articleCategories.edit', $row->id);
-                    $deleteUrl = route('articleCategories.destroy', $row->id);
+                    $editUrl = route('{{ modelVariable }}s.edit', $row->id);
+                    $deleteUrl = route('{{ modelVariable }}s.destroy', $row->id);
 
                     return view('partial.dataTableActions', compact('editUrl', 'deleteUrl'));
                 })
