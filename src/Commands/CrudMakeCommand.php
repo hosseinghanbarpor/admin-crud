@@ -189,7 +189,7 @@ class CrudMakeCommand extends GeneratorCommand
             $this->getArrayString($this->getSearchableFields()),
             $this->getFilterableFields()->implode("\n                    "),
             $this->getArrayString($this->getSortableFields()),
-            $this->getArrayString($this->getSystemName()),
+            $this->getItemString($this->getSystemName()),
             $this->getArrayString($this->getIncludeFields()),
             $this->getMediaCodeLines($this->getMediaFields()),
             $namespaceModel,
@@ -321,6 +321,13 @@ class CrudMakeCommand extends GeneratorCommand
     {
         return collect($array)->map(function ($item) {
             return "'$item'";
+        })->values()->implode(', ');
+    }
+
+    private function getItemString($array)
+    {
+        return collect($array)->map(function ($item) {
+            return "$item";
         })->values()->implode(', ');
     }
 
