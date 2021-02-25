@@ -23,21 +23,16 @@ class {{ class }} extends Controller
     public function index(Request $request)
     {
 
-       if ($request->ajax()) {
+        if ($request->ajax()) {
             $data = {{ model }}::select('*');
             return Datatables::of($data)
                 ->addIndexColumn()
-                ->addColumn('actions', function($row){
-                    $editUrl = route('{{ modelVariable }}s.edit', $row->id);
-                    $deleteUrl = route('{{ modelVariable }}s.destroy', $row->id);
-
-                    return view('partial.dataTableActions', compact('editUrl', 'deleteUrl'));
-                })
-                ->make(true);
+                ->addColumn('actions', 'dashboard.{{ system }}.{{ model }}.actions')
+                ->toJson();
         }
 
 
-        $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ model }}"], ['name' => "{{ model }} List"]];
+        $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ system }}"], ['name' => "{{ model }} List"]];
 
         return view('dashboard.{{ system }}.{{ model }}.index', ['breadcrumbs' => $breadcrumbs ]);
     }
@@ -49,7 +44,7 @@ class {{ class }} extends Controller
      */
     public function create()
     {
-       $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ model }}"], ['name' => "Create {{ model }}"]];
+       $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ system }}"], ['name' => "Create {{ model }}"]];
 
         return view('dashboard.{{ system }}.{{ model }}.create' , ['breadcrumbs' => $breadcrumbs] );
     }
@@ -63,6 +58,7 @@ class {{ class }} extends Controller
    public function store(Store{{ model }} $request)
     {
         {{ model }}::create($request->all());
+
         return redirect()->route('{{ modelVariable }}s.index');
     }
 
@@ -75,7 +71,7 @@ class {{ class }} extends Controller
      */
     public function show({{ model }} ${{ modelVariable }})
     {
-        $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ model }}"], ['name' => "Show {{ model }}"]];
+        $breadcrumbs = [['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "{{ system }}"], ['name' => "Show {{ model }}"]];
 
         return view('dashboard.{{ system }}.{{ model }}.show', ['{{ modelVariable }}' => ${{ modelVariable }}, 'breadcrumbs' => $breadcrumbs]);
     }
