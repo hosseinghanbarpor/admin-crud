@@ -18,7 +18,7 @@ class {{ class }}
      */
     public function viewAny(User $user)
     {
-        if ($user->can('view {{ model }}')) {
+        if ($user->can('View {{ model }}')) {
             return true;
         }
     }
@@ -32,7 +32,7 @@ class {{ class }}
      */
     public function view(User $user, {{ model }} ${{ modelVariable }})
     {
-        if ($user->can('view {{ model }}')) {
+        if ($user->can('View {{ model }}')) {
             return true;
         }
     }
@@ -45,7 +45,7 @@ class {{ class }}
      */
     public function create(User $user)
     {
-        if ($user->can('create {{ model }}')) {
+        if ($user->can('Create {{ model }}')) {
             return true;
         }
     }
@@ -59,7 +59,7 @@ class {{ class }}
      */
     public function update(User $user, {{ model }} ${{ modelVariable }})
     {
-        if ($user->can('edit {{ model }}')) {
+        if ($user->can('Edit {{ model }}')) {
             return true;
         }
     }
@@ -73,7 +73,7 @@ class {{ class }}
      */
     public function delete(User $user, {{ model }} ${{ modelVariable }})
     {
-        if ($user->can('delete {{ model }}')) {
+        if ($user->can('Delete {{ model }}')) {
             return true;
         }
     }
