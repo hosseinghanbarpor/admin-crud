@@ -53,13 +53,13 @@ class {{ class }} extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
    public function store(Store{{ model }} $request)
     {
         {{ model }}::create($request->all());
 
-        return redirect()->route('{{ modelVariable }}s.index');
+        return redirect()->route('{{ modelVariable }}s.index')->with('success','{{ model }} successfully added.');
     }
 
 
@@ -101,7 +101,7 @@ class {{ class }} extends Controller
     {
         ${{ modelVariable }}->update($request->all());
 
-        return redirect()->route('{{ modelVariable }}s.index');
+        return redirect()->route('{{ modelVariable }}s.index')->with('success','{{ model }} successfully updated.');
     }
 
     /**
@@ -115,7 +115,7 @@ class {{ class }} extends Controller
     {
         ${{ modelVariable }}->delete();
 
-        return redirect()->route('{{ modelVariable }}s.index');
+        return redirect()->route('{{ modelVariable }}s.index')->with('success','{{ model }} successfully deleted.');
     }
 
 }
