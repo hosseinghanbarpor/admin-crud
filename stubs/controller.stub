@@ -22,6 +22,7 @@ class {{ class }} extends Controller
         if ($request->ajax()) {
             $data = {{ model }}::select('*');
             return Datatables::of($data)
+                ->only(['id','title','actions'])
                 ->addIndexColumn()
                 ->addColumn('actions', 'dashboard.{{ system }}.{{ model }}.actions')
                 ->toJson();
